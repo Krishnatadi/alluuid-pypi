@@ -1,6 +1,11 @@
+![pypi Version](https://img.shields.io/pypi/v/alluuid)
+![GitHub Issues](https://img.shields.io/github/issues/Krishnatadi/alluuid-pypi)
+
 # AllUUID
 
-`AllUUID` is a versatile Python library for generating universally unique identifiers (UUIDs) and GUIDs. It supports multiple versions of UUIDs, including version 1 (time-based), version 4 (random), and version 7 (timestamp-based). This tool is ideal for developers looking to create unique identifiers for databases, session tokens, or any other use cases where uniqueness is critical.
+**AllUUID** is a powerful Python package designed to generate various types of UUIDs (Universally Unique Identifiers), including UUID v1, v4, v7, GUIDs, and deterministic UUIDs based on email addresses. Perfect for use in databases, session tokens, distributed systems, and applications requiri
+ng consistent, unique identifiers. This tool is ideal for developers looking to create unique identifiers for databases, session tokens, or any other use cases where uniqueness is critical.
+
 
 This tool is ideal for developers looking to create unique identifiers for various applications, including:
 - Databases
@@ -9,16 +14,7 @@ This tool is ideal for developers looking to create unique identifiers for vario
 - Any other use cases where uniqueness is critical
 
 
-## Table of Contents
-
-* [Installation](#installation)
-* [Features](#features)
-* [Functions Overview](#methods)
-* [Examples](#examples)
-
-
 ## Installation
-
 To install this package:
 
 ```bash
@@ -39,16 +35,17 @@ pip install alluuid
 
 ## Functions Overview
 
-| Function Name                     | Description                                                                                       | Example Output                                      |
-|-----------------------------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| `generate_uuid1()`                | Generates a UUID based on the current timestamp and the MAC address of the machine.             | `'123e4567-e89b-12d3-a456-426614174000'`          |
-| `generate_uuid4()`                | Creates a random UUID using version 4, generated entirely randomly.                              | `'abcd1234-5678-90ef-ghij-klmnopqrstuv'`          |
-| `generate_uuid7()`                | Generates a time-based UUID using version 7, incorporating a timestamp with an increasing sequence number. | `'f47ac10b-58cc-4372-a567-0e02b2c3d479'`          |
-| `generate_nil_uuid()`             | Produces a nil UUID, a special UUID consisting entirely of zeros.                                | `'00000000-0000-0000-0000-000000000000'`          |
-| `generate_guid()`                 | Generates a GUID (Globally Unique Identifier), similar to a UUID but often used in Microsoft environments. | `'6B29FC40-CA47-1067-B31D-00DD010662DA'`          |
-| `generate_multiple_uuids(count, length)` | Generates a specified number of random UUID4s at once, returning them as a list.             | `['abcd1234-5678-90ef-ghij-klmnopqrstuv', ...]`  |
-| `generate_uuid_for_email(email)` | Generates a UUID based on a provided email address, ensuring uniqueness and consistency for that email. | `'9f16c98b-e3b8-4a62-aeef-5f261f2ff1c3'`          |
-| `generate_custom_uuid()`          | Generates a custom UUID based on specified parameters, allowing for tailored UUID creation.      | `'3a2d5c4b-0b47-4f3e-bfb8-1c41d8c7760e'`          |
+| Function Name                          | Description                                                                                                           | Example Output                                        |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| `generate_uuid1()`                     | Generates a UUID based on the current timestamp and the MAC address of the machine.                                  | `'123e4567-e89b-12d3-a456-426614174000'`            |
+| `generate_uuid4()`                     | Creates a random UUID using version 4, generated entirely randomly.                                                  | `'abcd1234-5678-90ef-ghij-klmnopqrstuv'`            |
+| `generate_uuid7()`                     | Generates a time-based UUID using version 7, incorporating a timestamp with an increasing sequence number.           | `'f47ac10b-58cc-4372-a567-0e02b2c3d479'`            |
+| `generate_nil_uuid()`                  | Produces a nil UUID, a special UUID consisting entirely of zeros.                                                    | `'00000000-0000-0000-0000-000000000000'`            |
+| `generate_guid()`                      | Generates a GUID (Globally Unique Identifier), similar to a UUID but often used in Microsoft environments.           | `'6B29FC40-CA47-1067-B31D-00DD010662DA'`            |
+| `generate_multiple_uuids(count, length)` | Generates a specified number of random UUID4s at once, returning them as a list.                                     | `['abcd1234-5678-90ef-ghij-klmnopqrstuv', ...]`    |
+| `generate_uuid_for_email(email)`       | Generates a UUID based on a provided email address, ensuring uniqueness and consistency for that email.              | `'9f16c98b-e3b8-4a62-aeef-5f261f2ff1c3'`            |
+| `validate_uuid_for_email(uuid, email)` | Validates whether a UUID matches the one that would be generated from the specified email address.                   | `True` or `False`                                   |
+| `generate_custom_uuid()`               | Generates a custom UUID based on specified parameters, allowing for tailored UUID creation.                          | `'3a2d5c4b-0b47-4f3e-bfb8-1c41d8c7760e'`            |
 
 
 
@@ -106,7 +103,15 @@ uuid = generate_uuid_for_email("test@example.com")
 # Example output: '9f16c98b-e3b8-4a62-aeef-5f261f2ff1c3'
 ```
 
-### 8. Generate Custom UUID
+
+### 8. Validate UUID Generated from Email
+This example validates whether a given UUID was generated from a specific email address. The validate_uuid_for_email function checks if the UUID matches the one that would be generated by hashing the email, helping verify consistent identity mappings.
+```python
+validation = validate_uuid_for_email(uuidGenerated, "test@example.com")
+# Example output: True/False
+```
+
+### 9. Generate Custom UUID
 #### Parameters
 
 - **`pattern`** (str): Defines the format of the generated UUID. You can use:
@@ -143,7 +148,18 @@ complex_uuid = generate_custom_uuid('x-dx-x', 3)
 
 
 
+## Community and Ecosystem
 
+By using **ALLUUID**, you are joining a growing community of developers who are passionate about UUID's. We encourage you to share your experiences, ideas, and feedback on GitHub Discussions or any community platform of your choice.
+
+We welcome contributions! If you’d like to contribute, Share use cases, submit an issue or a pull request on GitHub.
+
+We'd love to hear from you and see how you're using **ALLUUID** in your projects!
+Contributing
+
+
+## Issues and Feedback
+For issues, feedback, and feature requests, please open an issue on our [GitHub Issues page](http://github.com/krishnatadi/alluuid-pypi/issues). We actively monitor and respond to community feedback.
 
 
 
