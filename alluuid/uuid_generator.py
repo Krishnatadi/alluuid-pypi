@@ -434,7 +434,22 @@ def validate_uuid_for_email(uuid_str: str, email: str):
 # Custom pattern-based UUID
 def generate_custom_uuid(pattern: str):
     """
-    Example: pattern='xxxx-dddd-xxxx' (x: hex, d: digit)
+    Generate a custom UUID based on a flexible pattern.
+    
+    Pattern symbols (lowercase only - for flexibility with uppercase literals):
+    - 'x' = hex digit (0-9, a-f)
+    - 'd' = decimal digit (0-9)
+    
+    Any other character (including A-Z) is treated as LITERAL TEXT.
+    
+    This approach avoids conflicts between placeholders and literal text.
+    For more complex patterns, combine multiple calls or use Python directly.
+    
+    Examples:
+    - 'xxxx-dddd' = lowercase hex with dashes and digits
+    - 'BANK-xxxx-dddd' = BANK literal + hex + digits (uppercase letters are literal!)
+    - 'ID_dddd_dddd' = ID_ literal + digits
+    - 'USER-code-xxxx' = USER-code- all literal except xxxx hex
     """
     output = []
     for ch in pattern:
@@ -443,7 +458,7 @@ def generate_custom_uuid(pattern: str):
         elif ch == 'd':
             output.append(secrets.choice('0123456789'))
         else:
-            output.append(ch)
+            output.append(ch)  # Everything else is literal (including A-Z)
     return ''.join(output)
 
 # Generate multiple UUIDs of given version
